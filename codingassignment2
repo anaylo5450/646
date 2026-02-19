@@ -1,0 +1,37 @@
+import matplotlib.pyplot as plt
+percentages = []
+print ("Enter percentages asintegers for the pie chart (-1 to stop). Accepting integers such as 27, 34, 56.")
+while True:
+    percentage = int(input("Enter percentage: "))
+    if percentage == -1:
+        break
+    else:
+        percentages.append(percentage)
+
+labels = []
+print ("Enter labels for the pie chart. Accepting strings such as '1st Grade', '2nd Grade', '3rd Grade', etc.")
+while True:
+    label = input("Enter label('done' to stop): ")
+    if label == "done":
+        break
+    else:
+        labels.append(label)
+def draw_pie_chart(percentages, labels):
+    if sum_percentages(percentages) == 100:
+        explodes_list = []
+        explodes_list +=[0 for _ in range(len(percentages))]
+        explodes_list[len(percentages)-1] = 0.2
+        plt.pie(percentages, labels=labels, explode=explodes_list, autopct='%1.1f%%')    
+        plt.legend()
+        plt.axis('equal')
+        plt.show()
+    else:
+        print("Error: The sum of the percentages must be 100. Please try again.")
+        return
+def sum_percentages(percentages):
+    total = 0
+    for percentage in percentages:
+        total += percentage
+    return total
+
+draw_pie_chart(percentages, labels)

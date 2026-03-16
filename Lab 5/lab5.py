@@ -18,6 +18,7 @@ def main() -> None:
     text = TEXT_FILE.read_text(encoding="utf-8", errors="ignore")
     mask_img = Image.open(MASK_FILE).convert("L")
     mask_arr = np.array(mask_img)
+    mask_arr = 255 - mask_arr  # Invert the mask so words appear inside the star
 
     # background_color is NOT passed, so WordCloud uses its default.
     wc = WordCloud(mask=mask_arr)
